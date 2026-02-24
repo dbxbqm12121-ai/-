@@ -6,8 +6,8 @@
     <title>한화푸드테크 온보딩 포털</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
     <style>
-        :root { --h-orange: #ff6b00; --h-dark: #222; --bg-gray: #f4f5f7; --border: #eeeeee; }
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Pretendard', sans-serif; background-color: #ffffff; color: #333; overflow: hidden; -webkit-tap-highlight-color: transparent; }
+        :root { --h-orange: #ff6b00; --h-dark: #222; --bg-chat: #f0f2f5; --border: #eeeeee; }
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow: hidden; -webkit-tap-highlight-color: transparent; }
         .app-container { display: flex; flex-direction: column; height: 100vh; }
         header { padding: 18px 20px; background: #fff; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; z-index: 10; }
         header h2 { font-size: 1.15rem; font-weight: 900; margin: 0; letter-spacing: -0.5px; }
@@ -24,28 +24,26 @@
         .login-box b { color: var(--h-orange); }
         .app-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
         .app-btn { text-decoration: none; text-align: center; font-size: 0.78rem; padding: 12px; border-radius: 10px; font-weight: 700; background: var(--h-dark); color: white; }
-        #chatbot-tab { background-color: var(--bg-gray); }
+        #chatbot-tab { background-color: var(--bg-chat); }
         .quick-preview { padding: 12px 15px; background: #fff; border-bottom: 1px solid var(--border); display: flex; gap: 8px; overflow-x: auto; white-space: nowrap; -ms-overflow-style: none; scrollbar-width: none; }
         .quick-preview::-webkit-scrollbar { display: none; }
-        .q-btn { background: #fff; border: 1.5px solid #eee; color: #666; padding: 8px 16px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: 0.2s; }
-        .q-btn:active { background: var(--h-orange); color: #fff; border-color: var(--h-orange); }
-        #chat-window { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
-        .msg { max-width: 88%; padding: 16px 20px; border-radius: 20px; font-size: 0.92rem; line-height: 1.6; animation: fadeIn 0.2s; position: relative; }
-        .bot-msg { background: white; align-self: flex-start; border-bottom-left-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); border: 1px solid #f0f0f0; }
-        .user-msg { background: var(--h-orange); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
-        .bot-msg b { color: var(--h-dark); display: block; margin-bottom: 8px; font-size: 1rem; }
-        .bot-msg ul { padding: 0; margin: 0; list-style: none; }
-        .bot-msg li { margin-bottom: 6px; padding-left: 14px; position: relative; color: #555; }
-        .bot-msg li::before { content: "•"; position: absolute; left: 0; color: var(--h-orange); font-weight: bold; }
-        .hl { color: var(--h-orange); font-weight: 800; text-decoration: underline; }
-        .input-bar { padding: 15px 20px; background: white; border-top: 1px solid var(--border); display: flex; gap: 10px; align-items: center; }
-        input[type="text"] { flex: 1; padding: 14px 22px; border: 1.5px solid #eee; border-radius: 30px; outline: none; font-size: 1rem; background: #fcfcfc; }
-        .send-btn { background: var(--h-dark); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .q-btn { background: #fff; border: 1.5px solid #eee; color: #666; padding: 8px 16px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; cursor: pointer; }
+        #chat-window { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+        .msg { max-width: 85%; padding: 14px 18px; font-size: 0.92rem; line-height: 1.6; animation: fadeIn 0.2s; position: relative; }
+        .bot-msg { background: #ffffff; align-self: flex-start; border-radius: 15px 15px 15px 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); color: #333; }
+        .user-msg { background: var(--h-orange); color: white; align-self: flex-end; border-radius: 15px 15px 2px 15px; box-shadow: 0 2px 5px rgba(255,107,0,0.2); }
+        .bot-msg b { color: var(--h-dark); display: block; margin-bottom: 8px; font-size: 0.95rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 5px; }
+        .sub-btn-container { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+        .sub-btn { background: #f8f9fa; border: 1px solid #ddd; padding: 6px 12px; border-radius: 15px; font-size: 0.82rem; font-weight: 600; cursor: pointer; color: #555; }
+        .sub-btn:active { background: var(--h-orange); color: white; border-color: var(--h-orange); }
+        .hl { color: var(--h-orange); font-weight: 800; }
+        .input-bar { padding: 12px 15px; background: white; border-top: 1px solid var(--border); display: flex; gap: 8px; }
+        input[type="text"] { flex: 1; padding: 12px 18px; border: 1px solid #ddd; border-radius: 25px; outline: none; font-size: 0.95rem; }
+        .send-btn { background: var(--h-dark); color: white; border: none; width: 42px; height: 42px; border-radius: 50%; font-weight: 700; }
         .bottom-nav { display: flex; height: 75px; background: #fff; border-top: 1px solid var(--border); padding-bottom: env(safe-area-inset-bottom); }
-        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 0.75rem; color: #bbb; font-weight: 700; gap: 6px; }
+        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 0.75rem; color: #bbb; font-weight: 700; gap: 5px; }
         .nav-item.active { color: var(--h-orange); }
-        .nav-item i { font-size: 1.4rem; font-style: normal; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -53,93 +51,95 @@
     <header><h2>Hanwha <span>Foodtech</span></h2><span class="dept-tag">인사지원팀</span></header>
     <div class="content-area">
         <div id="links-tab" class="tab-content active">
-            <a href="https://hwhnr.circle.hanwha.com/" target="_blank" class="site-card">
-                <h3>1. 공식 포털 (Circle)</h3>
-                <div class="site-desc">사내 주요 공지 및 인사/복리후생 게시판 확인</div>
-                <div class="login-box">ID: <b>사번</b> / PW: <b>사번</b></div>
-            </a>
-            <a href="https://chhplus.hanwha.com/" target="_blank" class="site-card">
-                <h3>2. ch H+ (채널에이치플러스)</h3>
-                <div class="site-desc">신입사원 필수 및 직무 역량 강화 교육 플랫폼</div>
-                <div class="login-box">ID: <b>사번</b> / PW: <b>사번</b> (사번로그인 필수)</div>
-            </a>
-            <a href="https://thetastable.ezwel.com" target="_blank" class="site-card">
-                <h3>3. 복지몰 (이지웰)</h3>
-                <div class="site-desc">Refresh 포인트 사용 및 할인 쇼핑몰</div>
-                <div class="login-box">ID: <b>사번</b> / PW: <b>생년월일 6자리</b></div>
-            </a>
-            <div class="site-card">
-                <h3>4. 리조트 직원이용 (App)</h3>
-                <div class="site-desc">전국 한화리조트 예약 및 쿠폰 관리</div>
-                <div class="login-box">접속 후 <b>개인분양회원가입</b> 필수</div>
-                <div class="app-links">
-                    <a href="https://play.google.com/store/apps/details?id=co.kr.hanwharesort.HanhwaResort" target="_blank" class="app-btn">안드로이드</a>
-                    <a href="https://apps.apple.com/kr/app/%ED%95%9C%ED%99%94%EB%A6%AC%EC%A1%B0%ED%8A%B8/id1306431302" target="_blank" class="app-btn">iPhone</a>
+            <div id="links-scroll">
+                <a href="https://hwhnr.circle.hanwha.com/" target="_blank" class="site-card">
+                    <h3>1. 공식 포털 (Circle)</h3>
+                    <div class="site-desc">사내 주요 공지 및 인사/복리후생 게시판을 확인하는 통합 인트라넷입니다.</div>
+                    <div class="login-box">ID: <b>사번</b> / PW: <b>사번</b></div>
+                </a>
+                <a href="https://chhplus.hanwha.com/" target="_blank" class="site-card">
+                    <h3>2. ch H+ (채널에이치플러스)</h3>
+                    <div class="site-desc">신입사원 필수 교육 및 직무 역량 강화 온라인 플랫폼입니다.</div>
+                    <div class="login-box">ID: <b>사번</b> / PW: <b>사번</b> (사번로그인 필수)</div>
+                </a>
+                <a href="https://thetastable.ezwel.com" target="_blank" class="site-card">
+                    <h3>3. 복지몰 (이지웰)</h3>
+                    <div class="site-desc">Refresh 포인트를 활용한 쇼핑 및 외식권 구매 플랫폼입니다.</div>
+                    <div class="login-box">ID: <b>사번</b> / PW: <b>생년월일 6자리</b></div>
+                </a>
+                <div class="site-card">
+                    <h3>4. 리조트 직원이용 (App)</h3>
+                    <div class="site-desc">전국 한화리조트 예약 및 임직원 전용 쿠폰 관리 앱입니다.</div>
+                    <div class="login-box">접속 후 상단 메뉴에서 <b>개인분양회원가입</b> 필수</div>
+                    <div class="app-links">
+                        <a href="https://play.google.com/store/apps/details?id=co.kr.hanwharesort.HanhwaResort" target="_blank" class="app-btn">안드로이드</a>
+                        <a href="https://apps.apple.com/kr/app/%ED%95%9C%ED%99%94%EB%A6%AC%EC%A1%B0%ED%8A%B8/id1306431302" target="_blank" class="app-btn">iPhone</a>
+                    </div>
                 </div>
             </div>
             <p style="text-align: center; font-size: 0.72rem; color: #aaa; margin: 30px 0;">문의: 02-2161-0824 / 0860<br>© 2026 Hanwha Foodtech HR Support Team.</p>
         </div>
         <div id="chatbot-tab" class="tab-content">
             <div class="quick-preview">
-                <button class="q-btn" onclick="askBot('경조사 지원 기준')">🎁 경조사 기준</button>
-                <button class="q-btn" onclick="askBot('출산/육아 혜택')">👶 출산/육아</button>
-                <button class="q-btn" onclick="askBot('Refresh 포인트')">🛒 복지 포인트</button>
-                <button class="q-btn" onclick="askBot('리조트 이용 규정')">🏖️ 리조트 이용</button>
-                <button class="q-btn" onclick="askBot('휴가 제도 안내')">📅 휴가 제도</button>
-                <button class="q-btn" onclick="askBot('보험 및 건강검진')">🛡️ 보험/검진</button>
+                <button class="q-btn" onclick="handleMain('경조사')">🎁 경조사 상세</button>
+                <button class="q-btn" onclick="handleMain('가정직장')">🏠 가정/직장지원</button>
+                <button class="q-btn" onclick="handleMain('의료건강')">🛡️ 의료/건강</button>
+                <button class="q-btn" onclick="handleMain('휴가리조트')">🏖️ 휴가/리조트</button>
+                <button class="q-btn" onclick="handleMain('복지포인트')">🛒 복지포인트</button>
             </div>
             <div id="chat-window"><div class="msg bot-msg">안녕하세요! <b>인사지원팀 복지 챗봇</b>입니다. 😊 무엇을 도와드릴까요?</div></div>
-            <div class="input-bar">
-                <input type="text" id="userInput" placeholder="혜택을 물어보세요..." onkeypress="if(event.keyCode==13) send()">
-                <button class="send-btn" onclick="send()">전송</button>
-            </div>
+            <div class="input-bar"><input type="text" id="userInput" placeholder="질문을 입력하세요..." onkeypress="if(event.keyCode==13) send()"><button class="send-btn" onclick="send()">↑</button></div>
         </div>
     </div>
     <nav class="bottom-nav">
-        <div class="nav-item active" onclick="switchTab('links', this)"><i>🔗</i><span>필수 링크</span></div>
-        <div class="nav-item" onclick="switchTab('chatbot', this)"><i>💬</i><span>복지 챗봇</span></div>
+        <div class="nav-item active" onclick="switchTab('links', this)"><span>🔗</span><span>필수 링크</span></div>
+        <div class="nav-item" onclick="switchTab('chatbot', this)"><span>💬</span><span>복지 챗봇</span></div>
     </nav>
 </div>
 <script>
-    function switchTab(name, el) {
+    function switchTab(n, el) {
         document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-        document.getElementById(name + '-tab').classList.add('active');
-        el.classList.add('active');
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        document.getElementById(n + '-tab').classList.add('active'); el.classList.add('active');
     }
-    const chatWindow = document.getElementById('chat-window');
-    function addMsg(text, sender) {
-        const div = document.createElement('div');
-        div.className = `msg \${sender}-msg`;
-        div.innerHTML = text;
-        chatWindow.appendChild(div);
-        chatWindow.scrollTop = chatWindow.scrollHeight;
-    }
-    function askBot(q) { document.getElementById('userInput').value = q; send(); }
-    function send() {
-        const input = document.getElementById('userInput');
-        const text = input.value.trim();
-        if(!text) return;
-        addMsg(text, 'user');
-        input.value = '';
+    const win = document.getElementById('chat-window');
+    function add(t, s) { const d = document.createElement('div'); d.className = `msg \${s}-msg`; d.innerHTML = t; win.appendChild(d); win.scrollTop = win.scrollHeight; }
+    
+    function handleMain(m) {
+        add(m === '경조사' ? '경조사 상세 기준을 알려줘' : m === '가정직장' ? '가정 및 직장생활 지원 내용을 알려줘' : '관련 내용을 확인하고 싶어', 'user');
         setTimeout(() => {
-            let res = "정확한 키워드(경조사, 포인트, 리조트 등)로 질문해 주세요.";
-            if(text.includes('경조') || text.includes('결혼') || text.includes('상')) {
-                res = `<b>[경조사 지원 상세 기준]</b><ul><li><b>본인 결혼:</b> 7일 휴가 / <span class="hl">100만원</span> / 화환 지급</li><li><b>자녀 출산:</b> 10일 휴가 / <span class="hl">1,000만원</span> 지급</li><li><b>부모 상:</b> 5일 휴가 / 100만원</li><li><b>배우자 상:</b> 6일 휴가 / 150만원</li><li><small>※ 사유 발생 3개월 이내 신청 필수</small></li></ul>`;
-            } else if(text.includes('출산') || text.includes('육아')) {
-                res = `<b>[임신/출산/육아 지원]</b><ul><li><b>출산휴가:</b> 90일 (다태아 120일)</li><li><b>육아휴직:</b> 만 8세 이하 자녀 대상 최대 1년</li><li><b>가족지원:</b> 유치원 입학 축하금 및 자녀 학자금</li></ul>`;
-            } else if(text.includes('포인트')) {
-                res = `<b>[Refresh 포인트 및 복지몰]</b><ul><li><b>지급:</b> 매년 1월 <span class="hl">70만 점</span> 선지급</li><li><b>사용:</b> 연차 1일 사용 시 7만 점 매칭</li><li><b>URL:</b> thetastable.ezwel.com</li></ul>`;
-            } else if(text.includes('리조트')) {
-                res = `<b>[리조트 직원이용]</b><ul><li><b>범위:</b> 무료 4박 / 유료 4박</li><li><b>쿠폰:</b> 할인권 각 12장 지급</li><li><b>방법:</b> 앱 접속 → 개인분양회원가입 후 예약</li></ul>`;
-            } else if(text.includes('보험') || text.includes('검진')) {
-                res = `<b>[보험 및 의료 지원]</b><ul><li><b>상해보험:</b> 업무 무관 사고도 보장 (1년 이상)</li><li><b>건강검진:</b> 종합검진 및 공단검진 시행</li></ul>`;
-            } else if(text.includes('휴가')) {
-                res = `<b>[휴가 제도 안내]</b><ul><li><b>연차:</b> 15일 기본 (2년마다 1일 가산)</li><li><b>정기휴가:</b> 연간 <span class="hl">4일 별도 유급 부여</span></li></ul>`;
-            }
-            addMsg(res, 'bot');
-        }, 500);
+            let b = "";
+            if(m === '경조사') b = "<b>[경조사 선택]</b> 세부 항목을 선택하세요.<div class='sub-btn-container'><button class='sub-btn' onclick='show(\"결혼\")'>결혼</button><button class='sub-btn' onclick='show(\"출산\")'>출산</button><button class='sub-btn' onclick='show(\"사망\")'>사망</button><button class='sub-btn' onclick='show(\"경조기본\")'>기본수칙</button></div>";
+            else if(m === '가정직장') b = "<b>[가정/직장지원 선택]</b><div class='sub-btn-container'><button class='sub-btn' onclick='show(\"교육비\")'>교육비/양육</button><button class='sub-btn' onclick='show(\"기념품\")'>기념품/기념일</button><button class='sub-btn' onclick='show(\"생활지원\")'>생활부조/동호회</button></div>";
+            else if(m === '의료건강') b = "<b>[의료/건강 선택]</b><div class='sub-btn-container'><button class='sub-btn' onclick='show(\"상해보험\")'>단체 상해보험</button><button class='sub-btn' onclick='show(\"건강검진\")'>건강검진/접종</button></div>";
+            else if(m === '휴가리조트') b = "<b>[휴가/리조트 선택]</b><div class='sub-btn-container'><button class='sub-btn' onclick='show(\"연차휴가\")'>연차/특별휴가</button><button class='sub-btn' onclick='show(\"리조트규정\")'>리조트 이용규정</button><button class='sub-btn' onclick='show(\"모성보호\")'>보건/출산휴가</button></div>";
+            else if(m === '복지포인트') b = "<b>[포인트 선택]</b><div class='sub-btn-container'><button class='sub-btn' onclick='show(\"포인트지급\")'>지급 및 사용</button><button class='sub-btn' onclick='show(\"이지웰\")'>복지몰 이용법</button></div>";
+            add(b, 'bot');
+        }, 300);
     }
+
+    function show(k) {
+        add(k + '에 대해 상세히 알려줘', 'user');
+        setTimeout(() => {
+            let r = "";
+            if(k === '결혼') r = "<b>[결혼 지원 기준]</b><br>• <b>본인 결혼:</b> 7일 휴가 / <span class='hl'>1,000,000원</span> / 경조 화환<br>• <b>자녀 결혼:</b> 1일 / 700,000원 / 경조 화환<br>• <b>형제자매/회갑(부모):</b> 1일 / 경조 화환";
+            else if(k === '출산') r = "<b>[출산 지원 기준]</b><br>• <b>자녀 출산:</b> 10일 휴가 / <span class='hl'>10,000,000원</span> 지급<br>• <b>맘스패키지:</b> 임신/출산 전용 패키지 지원<br>• <b>아빠휴가:</b> 남성 임직원 육아 참여 휴가 지원";
+            else if(k === '사망') r = "<b>[사망 지원 기준]</b><br>• <b>부모/배우자부모:</b> 5일 / 1,000,000원 / 화환 및 장의용품<br>• <b>배우자:</b> 6일 / 1,500,000원 / 화환 및 장의용품<br>• <b>자녀:</b> 5일 / 1,500,000원 / 화환 및 장의용품<br>• <b>조부모:</b> 3일 / 1,000,000원<br>• <b>본인 사망:</b> 근속별 통상임금 1~6개월분 차등";
+            else if(k === '경조기본') r = "<b>[경조 유의사항]</b><br>• <b>휴가 계산:</b> 휴일(공휴일/주말) 포함 산입, 사유 발생 당일부터 기산<br>• <b>신청 기한:</b> 사유 발생일로부터 <span class='hl'>3개월 이내</span> 신청 필수";
+            else if(k === '교육비') r = "<b>[자녀 교육/양육]</b><br>• <b>교육비:</b> 자녀 학자금 및 유치원 입학 축하금 (근속 차등)<br>• <b>수능자녀:</b> 합격 기원 선물 지급";
+            else if(k === '기념품') r = "<b>[기념일 지원]</b><br>• <b>정기 기념품:</b> 창립기념일(10/9) & 근로자의 날(5/1) 현재 전원 <span class='hl'>7만원 상당</span> 지급<br>• <b>개인 기념일:</b> 3개월 이상 재직 시 생일/결혼기념일 문화상품권 지급";
+            else if(k === '생활지원') r = "<b>[생활/직장 지원]</b><br>• <b>명절:</b> 설 차례비 지급<br>• <b>식사:</b> 중식비 지원<br>• <b>동우회:</b> 사내 동우회 활동 지원금 제공";
+            else if(k === '상해보험') r = "<b>[단체 상해보험]</b><br>• <b>대상:</b> 최초 입사일 기준 1년 이상 근무자<br>• <b>특징:</b> 업무 연관성 무관(휴일/여행 등) 일상 사고 보장<br>• <b>비례보상:</b> 개인 실손과 중복 시 비례 보상됨";
+            else if(k === '건강검진') r = "<b>[건강 관리]</b><br>• <b>종합검진:</b> 근속에 따라 차등 지원<br>• <b>공단검진:</b> 사무직 격년 / 비사무직 매년<br>• <b>예방접종:</b> 매년 전 임직원 독감 접종 시행";
+            else if(k === '연차휴가') r = "<b>[휴가 제도]</b><br>• <b>연차:</b> 80% 출근 시 15일 부여, 2년마다 1일 가산(최대 25일)<br>• <b>정기휴가:</b> 연간 <span class='hl'>4일 유급</span> 별도 부여 (연중 분할 가능)";
+            else if(k === '리조트규정') r = "<b>[한화리조트 이용]</b><br>• <b>범위:</b> 일반직(무료 4박/유료 4박), 전문직(무료 2박/유료 4박)<br>• <b>쿠폰:</b> 부대업장/식음 할인권 각 12장 지급<br>• <b>방법:</b> 리조트 App -> 개인분양회원가입 -> 임직원 예약";
+            else if(k === '모성보호') r = "<b>[출산/육가 휴가]</b><br>• <b>보건휴가:</b> 월 1일 (무급)<br>• <b>출산휴가:</b> 90일 (다태아 120일) / 60일 유급<br>• <b>육아휴직:</b> 만 8세 이하 자녀 대상 최대 1년 (1회 분할 가능)";
+            else if(k === '포인트지급') r = "<b>[Refresh 포인트]</b><br>• <b>대상:</b> 3개월 이상 재직자<br>• <b>내용:</b> 매년 1월 <span class='hl'>70만 점</span> 선지급<br>• <b>규칙:</b> 연차 1일 사용 시 7만 점 매칭 사용";
+            else if(k === '이지웰') r = "<b>[복지몰 이용법]</b><br>• <b>URL:</b> thetastable.ezwel.com<br>• <b>로그인:</b> ID(사번) / 최초 PW(생년6자리)<br>• <b>상담:</b> 02-2161-0824 / 0860";
+            add(r, 'bot');
+        }, 400);
+    }
+    function send() { const i = document.getElementById('userInput'); const t = i.value.trim(); if(!t) return; add(t, 'user'); i.value = ''; setTimeout(() => add("상단의 퀵 버튼이나 하위 버튼을 이용하시면 정확한 정보를 확인하실 수 있습니다.", 'bot'), 500); }
 </script>
 </body>
 </html>
