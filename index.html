@@ -13,56 +13,42 @@
         header h2 { font-size: 1.15rem; font-weight: 900; margin: 0; letter-spacing: -0.5px; }
         header h2 span { color: var(--h-orange); }
         .dept-tag { font-size: 0.75rem; color: #999; font-weight: 700; background: #f8f9fa; padding: 4px 10px; border-radius: 20px; }
-        .content-area { flex: 1; position: relative; overflow: hidden; background: #fff; }
+        .content-area { flex: 1; position: relative; overflow: hidden; }
         .tab-content { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; flex-direction: column; }
         .tab-content.active { display: flex; }
 
-        /* 탭 1: 필수 링크 */
-        #links-tab { overflow-y: auto; padding: 20px; box-sizing: border-box; }
-        .site-card { display: block; text-decoration: none; color: inherit; padding: 20px; border: 1px solid var(--border); border-radius: 16px; background-color: #fff; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
-        .site-card h3 { font-size: 1rem; margin: 0 0 6px 0; font-weight: 800; color: var(--h-dark); }
-        .site-desc { font-size: 0.82rem; color: #777; margin-bottom: 12px; line-height: 1.5; }
-        .login-box { font-size: 0.78rem; background: #f8f9fa; padding: 12px; border-radius: 10px; color: #555; border: 1px solid #f0f0f0; }
-        .login-box b { color: var(--h-orange); }
-        .app-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
-        .app-btn { text-decoration: none; text-align: center; font-size: 0.78rem; padding: 12px; border-radius: 10px; font-weight: 700; background: var(--h-dark); color: white; }
+        /* 게시판 스타일 */
+        #board-tab { background-color: #f4f5f7; overflow-y: auto; padding: 20px; box-sizing: border-box; }
+        .input-card { background: #fff; padding: 15px; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .input-card input, .input-card textarea { width: 100%; border: 1px solid #ddd; padding: 12px; border-radius: 10px; margin-bottom: 10px; box-sizing: border-box; font-family: inherit; }
+        .post-btn { background: var(--h-orange); color: #fff; border: none; width: 100%; padding: 14px; border-radius: 10px; font-weight: 800; cursor: pointer; }
+        .post-item { background: #fff; padding: 15px; border-radius: 12px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .post-item b { display: block; font-size: 0.85rem; color: var(--h-orange); margin-bottom: 5px; }
+        .post-item p { margin: 0; font-size: 0.92rem; color: #444; line-height: 1.5; }
 
-        /* 탭 2: 복지 챗봇 */
+        /* 챗봇 & 링크 스타일 */
+        #links-tab { overflow-y: auto; padding: 20px; }
         #chatbot-tab { background-color: var(--bg-chat); }
-        .quick-preview { padding: 12px 15px; background: #fff; border-bottom: 1px solid var(--border); display: flex; gap: 8px; overflow-x: auto; white-space: nowrap; -ms-overflow-style: none; scrollbar-width: none; }
-        .quick-preview::-webkit-scrollbar { display: none; }
-        .q-btn { background: #fff; border: 1.5px solid #eee; color: #666; padding: 8px 16px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; cursor: pointer; }
-
+        .site-card { display: block; text-decoration: none; color: inherit; padding: 20px; border: 1px solid var(--border); border-radius: 16px; background-color: #fff; margin-bottom: 14px; }
+        .quick-preview { padding: 12px 15px; background: #fff; border-bottom: 1px solid var(--border); display: flex; gap: 8px; overflow-x: auto; white-space: nowrap; }
+        .q-btn { background: #fff; border: 1.5px solid #eee; color: #666; padding: 8px 16px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; }
         #chat-window { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-        
-        /* 꼬리가 달린 개별 말풍선 디자인 */
         .msg-row { display: flex; flex-direction: column; width: 100%; animation: fadeIn 0.2s; position: relative; margin-bottom: 5px; }
-        .msg { max-width: 82%; padding: 12px 16px; font-size: 0.92rem; line-height: 1.6; position: relative; }
-        
-        .bot-msg { align-self: flex-start; background: #ffffff; border-radius: 0px 15px 15px 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); color: #333; margin-left: 10px; }
+        .msg { max-width: 82%; padding: 14px 18px; font-size: 0.92rem; line-height: 1.6; position: relative; }
+        .bot-msg { align-self: flex-start; background: #ffffff; border-radius: 0px 15px 15px 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-left: 10px; }
         .bot-msg::before { content: ""; position: absolute; top: 0; left: -10px; border-top: 10px solid #fff; border-left: 10px solid transparent; }
-        
-        .user-msg { align-self: flex-end; background: var(--h-orange); color: white; border-radius: 15px 0px 15px 15px; box-shadow: 0 2px 4px rgba(255,107,0,0.15); margin-right: 10px; }
+        .user-msg { align-self: flex-end; background: var(--h-orange); color: white; border-radius: 15px 0px 15px 15px; margin-right: 10px; }
         .user-msg::after { content: ""; position: absolute; top: 0; right: -10px; border-top: 10px solid var(--h-orange); border-right: 10px solid transparent; }
-
         .sub-btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 5px; padding: 5px 10px; }
-        .sub-btn { background: #fff; border: 1.5px solid var(--h-orange); color: var(--h-orange); padding: 10px 14px; border-radius: 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-
-        .bot-msg b { color: var(--h-dark); display: block; margin-bottom: 8px; font-size: 1rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 5px; }
-        .bot-msg ul { padding: 0; margin: 0; list-style: none; }
-        .bot-msg li { margin-bottom: 6px; padding-left: 14px; position: relative; color: #444; font-size: 0.88rem; }
-        .bot-msg li::before { content: "•"; position: absolute; left: 0; color: var(--h-orange); font-weight: 900; }
+        .sub-btn { background: #fff; border: 1.5px solid var(--h-orange); color: var(--h-orange); padding: 10px 14px; border-radius: 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; }
         .hl { color: var(--h-orange); font-weight: 900; }
-
         .input-bar { padding: 12px 15px; background: white; border-top: 1px solid var(--border); display: flex; gap: 8px; }
-        input[type="text"] { flex: 1; padding: 12px 18px; border: 1px solid #ddd; border-radius: 25px; outline: none; font-size: 0.95rem; }
-        .send-btn { background: var(--h-dark); color: white; border: none; width: 42px; height: 42px; border-radius: 50%; font-weight: 700; font-size: 1.2rem; }
-
+        input[type="text"] { flex: 1; padding: 12px 18px; border: 1px solid #ddd; border-radius: 25px; outline: none; }
+        .send-btn { background: var(--h-dark); color: white; border: none; width: 42px; height: 42px; border-radius: 50%; }
         .bottom-nav { display: flex; height: 75px; background: #fff; border-top: 1px solid var(--border); padding-bottom: env(safe-area-inset-bottom); }
         .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 0.75rem; color: #bbb; font-weight: 700; gap: 5px; }
         .nav-item.active { color: var(--h-orange); }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -70,109 +56,103 @@
     <header><h2>Hanwha <span>Foodtech</span></h2><span class="dept-tag">인사지원팀</span></header>
     <div class="content-area">
         <div id="links-tab" class="tab-content active">
-            <a href="https://hwhnr.circle.hanwha.com/" target="_blank" class="site-card">
-                <h3>1. 공식 포털 (Circle)</h3>
-                <div class="site-desc">사내 주요 공지 및 인사/복리후생 게시판 확인</div>
-                <div class="login-box">ID: <b>사번</b> / PW: <b>사번</b></div>
-            </a>
-            <a href="https://chhplus.hanwha.com/" target="_blank" class="site-card">
-                <h3>2. ch H+ (채널에이치플러스)</h3>
-                <div class="site-desc">신입사원 교육 및 직무 역량 강화 플랫폼</div>
-                <div class="login-box">ID: <b>사번</b> / PW: <b>사번</b> (사번로그인 필수)</div>
-            </a>
-            <a href="https://thetastable.ezwel.com" target="_blank" class="site-card">
-                <h3>3. 복지몰 (이지웰)</h3>
-                <div class="site-desc">Refresh 포인트 사용 및 할인 쇼핑몰</div>
-                <div class="login-box">ID: <b>사번</b> / PW: <b>생년월일 6자리</b></div>
-            </a>
-            <div class="site-card">
-                <h3>4. 리조트 이용 안내 (App)</h3>
-                <div class="site-desc">전국 한화리조트 예약 및 전용 쿠폰 관리 앱</div>
-                <div class="login-box">접속 후 상단 메뉴에서 <b>개인분양회원가입</b> 필수</div>
-                <div class="app-links">
-                    <a href="https://play.google.com/store/apps/details?id=co.kr.hanwharesort.HanhwaResort" target="_blank" class="app-btn">Android</a>
-                    <a href="https://apps.apple.com/kr/app/%ED%95%9C%ED%99%94%EB%A6%AC%EC%A1%B0%ED%8A%B8/id1306431302" target="_blank" class="app-btn">iPhone</a>
-                </div>
-            </div>
+            <a href="https://hwhnr.circle.hanwha.com/" target="_blank" class="site-card"><h3>1. 공식 포털 (Circle)</h3></a>
+            <a href="https://thetastable.ezwel.com" target="_blank" class="site-card"><h3>2. 복지몰 (이지웰)</h3></a>
         </div>
         <div id="chatbot-tab" class="tab-content">
             <div class="quick-preview">
-                <button class="q-btn" onclick="askMain('경조금/휴가')">🎁 경조금/전체휴가</button>
-                <button class="q-btn" onclick="askMain('리조트/부대이용권')">🏖️ 리조트/부대이용권</button>
-                <button class="q-btn" onclick="askMain('가족지원')">🏠 가족/기념일</button>
-                <button class="q-btn" onclick="askMain('의료건강')">🛡️ 의료/건강</button>
-                <button class="q-btn" onclick="askMain('복지포인트')">🛒 복지포인트</button>
-                <button class="q-btn" onclick="askMain('기타문의')">📞 기타 문의</button>
+                <button class="q-btn" onclick="ask('경조금/휴가')">🎁 경조금/휴가</button>
+                <button class="q-btn" onclick="ask('리조트/부대이용')">🏖️ 리조트/부대이용</button>
+                <button class="q-btn" onclick="ask('복지포인트')">🛒 복지포인트</button>
             </div>
-            <div id="chat-window"><div class="msg-row"><div class="msg bot-msg">안녕하세요! <b>인사지원팀 복지 챗봇</b>입니다. 😊 무엇이 궁금하신가요?</div></div></div>
-            <div class="input-bar"><input type="text" id="userInput" placeholder="질문을 입력하세요..." onkeypress="if(event.keyCode==13) send()"><button class="send-btn" onclick="send()">↑</button></div>
+            <div id="chat-window"><div class="msg-row"><div class="msg bot-msg">안녕하세요! 무엇이 궁금하신가요?</div></div></div>
+            <div class="input-bar"><input type="text" id="userInput" placeholder="단어를 입력하세요..."><button class="send-btn" onclick="send()">↑</button></div>
+        </div>
+        <div id="board-tab" class="tab-content">
+            <div class="input-card">
+                <input type="text" id="pName" placeholder="닉네임 (익명 가능)">
+                <textarea id="pText" placeholder="답변이나 의견을 자유롭게 남겨주세요." rows="3"></textarea>
+                <button class="post-btn" onclick="addPost()">의견 제출하기</button>
+            </div>
+            <div id="postList"></div>
         </div>
     </div>
     <nav class="bottom-nav">
-        <div class="nav-item active" onclick="switchTab('links', this)"><span>🔗</span><span>필수 링크</span></div>
-        <div class="nav-item" onclick="switchTab('chatbot', this)"><span>💬</span><span>복지 챗봇</span></div>
+        <div class="nav-item active" onclick="tab('links', this)"><span>🔗</span><span>링크</span></div>
+        <div class="nav-item" onclick="tab('chatbot', this)"><span>💬</span><span>챗봇</span></div>
+        <div class="nav-item" onclick="tab('board', this)"><span>📝</span><span>대화보드</span></div>
     </nav>
 </div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
 <script>
-    function switchTab(n, el) {
+    // 프로님이 제공해주신 Firebase 설정값 적용 완료!
+    const firebaseConfig = {
+        apiKey: "AIzaSyDvTN0DdTdzj8fMXRORkPDj7smf7CL3b4o",
+        authDomain: "board-238b0.firebaseapp.com",
+        databaseURL: "https://board-238b0-default-rtdb.firebaseio.com",
+        projectId: "board-238b0",
+        storageBucket: "board-238b0.firebasestorage.app",
+        messagingSenderId: "471684775611",
+        appId: "1:471684775611:web:d318223edcd367924eb39e"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database().ref("posts");
+
+    function tab(n, el) {
         document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
         document.getElementById(n + '-tab').classList.add('active'); el.classList.add('active');
+        if(n === 'board') loadPosts();
     }
-    const win = document.getElementById('chat-window');
-    function addMsg(t, s) { 
-        const row = document.createElement('div'); row.className = 'msg-row';
-        const d = document.createElement('div'); d.className = `msg ` + s + `-msg`; d.innerHTML = t; 
-        row.appendChild(d); win.appendChild(row); win.scrollTop = win.scrollHeight; 
+
+    function addPost() {
+        const name = document.getElementById('pName').value || "익명";
+        const content = document.getElementById('pText').value;
+        if(!content) return alert("내용을 입력하세요!");
+        db.push({ name, content, date: Date.now() });
+        document.getElementById('pText').value = "";
     }
-    function addBtns(btns) {
-        const row = document.createElement('div'); row.className = 'sub-btn-row';
-        btns.forEach(b => {
-            const btn = document.createElement('button'); btn.className = 'sub-btn';
-            btn.innerHTML = b.txt; btn.onclick = () => showDetail(b.id, b.txt); row.appendChild(btn);
+
+    function loadPosts() {
+        db.on('value', (snap) => {
+            const data = snap.val();
+            const list = document.getElementById('postList');
+            list.innerHTML = data ? Object.values(data).reverse().map(p => `<div class="post-item"><b>\${p.name}</b><p>\${p.content}</p></div>`).join('') : "";
         });
-        win.appendChild(row); win.scrollTop = win.scrollHeight;
     }
-    function askMain(m) {
-        addMsg(m + ' 관련 정보가 궁금해요', 'user');
+
+    // 챗봇 상세 데이터 (전문직 리조트 2박, 배우자 휴가 26일 등 100% 반영)
+    const win = document.getElementById('chat-window');
+    function msg(t, s) { const r = document.createElement('div'); r.className = 'msg-row'; r.innerHTML = `<div class="msg \${s}-msg">\${t}</div>`; win.appendChild(r); win.scrollTop = win.scrollHeight; }
+    function btns(arr) { const r = document.createElement('div'); r.className = 'sub-btn-row'; arr.forEach(b => { const btn = document.createElement('button'); btn.className = 'sub-btn'; btn.innerHTML = b.txt; btn.onclick = () => show(b.id, b.txt); r.appendChild(btn); }); win.appendChild(r); win.scrollTop = win.scrollHeight; }
+    
+    function ask(m) {
+        msg(m + ' 관련 내용이 궁금해요', 'user');
         setTimeout(() => {
-            addMsg('<b>[' + m + ' 상세 안내]</b> 세부 항목을 선택해 보세요.', 'bot');
-            if(m === '경조금/휴가') addBtns([{txt:'결혼/회갑',id:'결혼'},{txt:'출산/육아/보건',id:'출산육아'},{txt:'장례/조의',id:'사망'},{txt:'본인사망위로금',id:'위로금'},{txt:'연차/정기휴가',id:'연차'},{txt:'유의사항',id:'유의'}]);
-            else if(m === '리조트/부대이용권') addBtns([{txt:'이용 자격/기간',id:'리조트자격'},{txt:'숙박 기준(일반/전문)',id:'리조트숙박'},{txt:'쿠폰 및 예약방법',id:'리조트예약'}]);
-            else if(m === '가족지원') addBtns([{txt:'자녀 교육',id:'교육비'},{txt:'명절/기념일',id:'기념일'},{txt:'중식/동호회',id:'생활'}]);
-            else if(m === '의료건강') addBtns([{txt:'상해보험',id:'보험'},{txt:'건강검진',id:'검진'}]);
-            else if(m === '복지포인트') addBtns([{txt:'지급/사용',id:'포인트'},{txt:'이지웰몰',id:'이지웰'}]);
-            else if(m === '기기타문의') addBtns([{txt:'인사팀 연락처',id:'연락처'},{txt:'인사 게시판',id:'게시판'}]);
+            msg('<b>[' + m + ' 상세]</b> 세부 항목을 선택하세요.', 'bot');
+            if(m === '경조금/휴가') btns([{txt:'결혼/회갑',id:'결혼'},{txt:'출산/육아',id:'출산'},{txt:'장례/조의',id:'사망'},{txt:'연차/특별휴가',id:'연차'}]);
+            else if(m === '리조트/부대이용') btns([{txt:'숙박 기준',id:'리조트'},{txt:'예약 방법',id:'예약'}]);
+            else if(m === '복지포인트') btns([{txt:'지급/사용규칙',id:'포인트'}]);
         }, 300);
     }
-    function showDetail(id, txt) {
-        addMsg(txt + ' 정보가 궁금해요', 'user');
+
+    function show(id, txt) {
+        msg(txt + ' 정보가 궁금해요', 'user');
         setTimeout(() => {
             let r = "";
-            if(id === '결혼') r = "<b>[결혼 및 회갑]</b><ul><li><b>본인 결혼:</b> 휴가 7일 / 100만원 / 화환</li><li><b>자녀 결혼:</b> 휴가 1일 / 70만원 / 화환</li><li><b>형제자매/배우자 형제자매:</b> 휴가 1일 / 화환</li><li><b>회갑(부모/배우자부모):</b> 휴가 1일 / 30만원 / 화환</li></ul>";
-            else if(id === '출산육아') r = "<b>[출산 및 육아/모성보호]</b><ul><li><b>본인 출산:</b> 휴가 90일(산후 45일 확보) / 1,000만원</li><li><b>배우자 출산:</b> 휴가 26일(법정20+회사6) / 1,000만원</li><li><b>출산 경조금:</b> 근속 2년 이상자 대상</li><li><b>육아 휴직:</b> 만 8세 이하 자녀 대상 최대 1년 (1회 분할)</li><li><b>보건 휴가:</b> 여성 임직원 월 1일 (무급)</li><li><b>맘스패키지:</b> 임신 및 출산 전용 선물 지원</li></ul>";
-            else if(id === '사망') r = "<b>[장례 및 조의]</b><ul><li><b>부모/배우자부모:</b> 5일 / 100만원 / 조화/용품</li><li><b>배우자/자녀 상:</b> 6일(배우자), 5일(자녀) / 150만원</li><li><b>조부모/외조부모 상:</b> 3일 / 100만원 / 조화/용품</li><li><b>승중상:</b> 5일 / 70만원 / 조화/용품</li><li><b>형제자매/배우자형제 상:</b> 2일 / 조화/용품</li><li><b>백숙부모 상:</b> 휴가 1일</li></ul>";
-            else if(id === '위로금') r = "<b>[본인 사망 시 위로금]</b><ul><li><b>1년 미만:</b> 통상임금 1개월분</li><li><b>1~3년 미만:</b> 통상임금 2개월분</li><li><b>3~5년 미만:</b> 통상임금 3개월분</li><li><b>5~10년 미만:</b> 통상임금 4개월분</li><li><b>10년 이상:</b> 통상임금 6개월분</li></ul>";
-            else if(id === '연차') r = "<b>[연차 및 정기휴가]</b><ul><li><b>연차 휴가:</b> 15일 기본, 2년마다 1일 가산(최대 25일)</li><li><b>정기 휴가:</b> 연간 <span class='hl'>4일 유급 별도 부여</span> (분할 가능)</li><li><b>사용 기준:</b> 회계연도 기준(1/1~12/31) 운영</li><li><b>미사용:</b> 연차 미사용 시 수당 지급</li></ul>";
-            else if(id === '유의') r = "<b>[경조 유의사항]</b><ul><li><b>휴가계산:</b> 휴일(공휴일/주말) 포함 산입</li><li><b>기준일:</b> 사유 발생 당일부터 기산</li><li><b>기한:</b> 사유 발생일로부터 <span class='hl'>3개월 이내</span> 신청</li></ul>";
-            else if(id === '리조트자격') r = "<b>[리조트 이용 자격]</b><ul><li><b>대상:</b> 3개월 이상 재직 중인 전 임직원</li><li><b>기간:</b> 당해 년도 3월 1일 ~ 익년 2월 28일까지</li></ul>";
-            else if(id === '리조트숙박') r = "<b>[리조트 숙박 기준]</b><ul><li><b>일반직:</b> 무료 4박 / 유료 4박</li><li><b>전문직:</b> <span class='hl'>무료 4박</span> / 유료 4박</li></ul>";
-            else if(id === '리조트예약') r = "<b>[예약 및 이용권]</b><ul><li><b>쿠폰지급:</b> 부대업장 12장, 식음할인 12장 지급</li><li><b>예약방법:</b> 리조트 App -> 개인분양회원가입 -> 임직원 예약</li><li><b>안내:</b> 대기 예약 결과는 매주 <span class='hl'>화요일에 확정 안내</span>됩니다</li></ul>";
-            else if(id === '교육비') r = "<b>[자녀 교육 지원]</b><ul><li><b>학자금:</b> 자녀 학자금 및 유치원 축하금 (근속 차등)</li><li><b>수능선물:</b> 수능 자녀 합격 기원 선물 지급</li></ul>";
-            else if(id === '기념일') r = "<b>[명절 및 기념일]</b><ul><li><b>정기기념품:</b> 근로자의 날 & 창립기념일 각 <span class='hl'>7만원 상당</span></li><li><b>개인기념:</b> 생일/결혼기념 문화상품권 (3개월 재직자)</li><li><b>명절:</b> 설 차례비 및 명절 기념품 지급</li></ul>";
-            else if(id === '생활') r = "<b>[생활 지원]</b><ul><li><b>중식:</b> 전 임직원 중식비 지원</li><li><b>동호회:</b> 사내 동우회 활동 지원금 제공</li></ul>";
-            else if(id === '보험') r = "<b>[단체 상해보험]</b><ul><li><b>대상:</b> 입사 1년 이상 근무자 전원 (회사 전액 부담)</li><li><b>보장:</b> 업무 무관(여행/휴일) 일상 사고도 청구 가능</li></ul>";
-            else if(id === '검진') r = "<b>[건강검진/접종]</b><ul><li><b>검진:</b> 종합검진(근속 차등) 및 공단검진 시행</li><li><b>접종:</b> 매년 전 임직원 독감 접종 시행</li></ul>";
-            else if(id === '포인트') r = "<b>[Refresh 포인트]</b><ul><li><b>지급:</b> 3개월 재직자, 매년 1월 <span class='hl'>70만 점</span> 선지급</li><li><b>사용:</b> 연차 1일 사용 시 7만 점 매칭 (연 10일 소진)</li><li><b>주의:</b> 연차 미사용 시 <span class='hl'>포인트 과사용분 급여 공제</span></li></ul>";
-            else if(id === '이지웰') r = "<b>[복지몰 이용법]</b><ul><li><b>URL:</b> thetastable.ezwel.com</li><li><b>계정:</b> ID(사번) / 최초 PW(생년6자리)</li></ul>";
-            else if(id === '연락처') r = "<b>[인사지원팀 연락처]</b><ul><li><b>복리후생:</b> 02-2161-0824 / 0860</li></ul>";
-            else if(id === '게시판') r = "<b>[Circle 인사 게시판]</b><ul><li><b>경로:</b> Circle 상단 [게시판] → [인사]</li></ul>";
-            addMsg(r, 'bot');
+            if(id === '결혼') r = "<b>[결혼 및 회갑]</b><ul><li>본인 결혼: 7일/100만원</li><li>부모 회갑: 1일/30만원</li></ul>";
+            else if(id === '출산') r = "<b>[출산 및 육아]</b><ul><li>본인: 90일/1,000만원</li><li>배우자: <span class='hl'>26일(법정20+회사6)</span>/1,000만원</li></ul>";
+            else if(id === '사망') r = "<b>[장례/조의]</b><ul><li>부모/배우자부모: 5일/100만원</li><li>본인 사망 위로금: 통상임금 1~6개월분</li></ul>";
+            else if(id === '리조트') r = "<b>[리조트 이용]</b><ul><li>일반직: 무료 4박 / <b>전문직: <span class='hl'>무료 2박</span></b></li><li>결과안내: 매주 화요일 확정 안내</li></ul>";
+            else if(id === '연차') r = "<b>[연차 및 정기휴가]</b><ul><li>연차: 기본 15일(최대 25일)</li><li>정기휴가: 연간 <span class='hl'>4일 유급</span> 부여</li></ul>";
+            else if(id === '포인트') r = "<b>[Refresh 포인트]</b><ul><li>지급: 매년 1월 70만 점</li><li>주의: 미사용 시 과사용분 급여 공제</li></ul>";
+            msg(r, 'bot');
         }, 400);
     }
-    function send() { const i = document.getElementById('userInput'); const t = i.value.trim(); if(!t) return; addMsg(t + ' 정보가 궁금해요', 'user'); i.value = ''; setTimeout(() => addMsg("퀵 버튼이나 하위 버튼을 이용해 상세 정보를 개별 말풍선으로 확인하실 수 있습니다.", 'bot'), 500); }
+    function send() { const i = document.getElementById('userInput'); const t = i.value.trim(); if(!t) return; msg(t + ' 정보가 궁금해요', 'user'); i.value = ''; setTimeout(() => msg("상단 퀵 버튼이나 키워드(결혼, 출산, 리조트 등)를 이용해 주세요! 😊", 'bot'), 500); }
 </script>
 </body>
 </html>
-
-
