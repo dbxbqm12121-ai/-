@@ -107,24 +107,28 @@
             <div class="input-bar"><input type="text" id="userInput" placeholder="단어(결혼, 출산, 포인트, 보험 등) 입력..." onkeypress="if(event.keyCode==13) send()"><button class="send-btn" onclick="send()">↑</button></div>
         </div>
 
-        <div id="board-tab" class="tab-content">
-            <div class="input-card">
-                <div class="q-section">
-                    <span class="q-title">👤 닉네임</span>
-                    <input type="text" id="pName" placeholder="닉네임 (익명 가능)">
-                </div>
-                <div class="q-section">
-                    <span class="q-title">Q1. 입사 초반에는 어렵게 느꼈지만 지금은 그 때보다 쉬워진 게 있다면?</span>
-                    <textarea id="pQ1" placeholder="답변을 입력하세요." rows="2"></textarea>
-                </div>
-                <div class="q-section">
-                    <span class="q-title">Q2. 최근 이용한 동종업계 서비스 or 음식 중 가장 인상 깊었던 것은?</span>
-                    <textarea id="pQ2" placeholder="답변을 입력하세요." rows="2"></textarea>
-                </div>
-                <button class="post-btn" id="postSubmitBtn" onclick="addPost()">답변 등록하기</button>
-            </div>
-            <div id="postList"></div>
+       <div id="board-tab" class="tab-content">
+    <div class="input-card">
+        <div class="q-section">
+            <span class="q-title">👤 닉네임</span>
+            <input type="text" id="pName" placeholder="닉네임 (익명 가능)">
         </div>
+        <div class="q-section">
+            <span class="q-title">Q1. 입사 초반에는 어렵게 느꼈지만 지금은 그 때보다 쉬워진 게 있다면?</span>
+            <textarea id="pQ1" placeholder="답변을 입력하세요." rows="2"></textarea>
+        </div>
+        <div class="q-section">
+            <span class="q-title">Q2. 최근 이용한 동종업계 서비스 or 음식 중 가장 인상 깊었던 것은?</span>
+            <textarea id="pQ2" placeholder="답변을 입력하세요." rows="2"></textarea>
+        </div>
+        <div class="q-section">
+            <span class="q-title">Q3. 회사에 궁금한 점이 있다면 자유롭게 적어주세요.</span>
+            <textarea id="pQ3" placeholder="질문을 입력하세요. (선택)" rows="2"></textarea>
+        </div>
+        <button class="post-btn" id="postSubmitBtn" onclick="addPost()">답변 등록하기</button>
+    </div>
+    <div id="postList"></div>
+</div>
     </div>
     <nav class="bottom-nav">
         <div class="nav-item active" onclick="tabCtrl('links', this)"><span>🔗</span><span>링크</span></div>
@@ -439,17 +443,56 @@ else if (
         }, 500);
     }
 
+let editId = null; 
+
+    // 답변 등록 및 수정 기능 (Q3 반영)
     function addPost() {
         const name = document.getElementById('pName').value || "익명";
         const q1 = document.getElementById('pQ1').value;
         const q2 = document.getElementById('pQ2').value;
+        const q3 = document.getElementById('pQ3').value;
+        const btn = document.getElementById('postSubmitBtn');
+
         if(!q1 || !q2) return alert("Q1, Q2 답변은 필수입니다!");
-        db.push({ name, q1, q2, date: Date.now() });
+
+        if(editId) {
+            // 수정 모드일 때
+            db.child(editId).update({ name, q1, q2, q3 });
+            editId = null;
+            btn.innerHTML = "답변 등록하기";
+            btn.style.background = "var(--h-orange)";
+        } else {
+            // 새로 등록할 때
+            db.push({ name, q1, q2, q3, date: Date.now() });
+        }
+
+        // 입력창 비우기
         document.getElementById('pName').value = "";
         document.getElementById('pQ1').value = "";
         document.getElementById('pQ2').value = "";
+        document.getElementById('pQ3').value = "";
     }
 
+    // 삭제 기능
+    function deletePost(id) {
+        if(confirm("이 답변을 삭제하시겠습니까?")) db.child(id).remove();
+    }
+
+    // 수정 모드 시작 (클릭 시 입력창으로 데이터 불러오기)
+    function startEdit(id, name, q1, q2, q3) {
+        editId = id;
+        document.getElementById('pName').value = name;
+        document.getElementById('pQ1').value = q1;
+        document.getElementById('pQ2').value = q2;
+        document.getElementById('pQ3').value = q3;
+        
+        const btn = document.getElementById('postSubmitBtn');
+        btn.innerHTML = "수정 완료하기";
+        btn.style.background = "var(--h-dark)";
+        document.getElementById('board-tab').scrollTop = 0;
+    }
+
+    // 리스트 출력 (수정/삭제 버튼 및 Q3 내용 포함)
     function loadPosts() {
         db.on('value', function(snap) {
             const data = snap.val();
@@ -459,9 +502,18 @@ else if (
                 const keys = Object.keys(data).reverse();
                 for(let i=0; i<keys.length; i++) {
                     const id = keys[i]; const p = data[id];
-                    html += `<div class="post-item"><b>${p.name}</b>`;
-                    html += `<div class="post-content-row"><span class="q-label">Q1.</span>${p.q1}</div>`;
-                    html += `<div class="post-content-row"><span class="q-label">Q2.</span>${p.q2}</div></div>`;
+                    html += `<div class="post-item">
+                        <b>${p.name}</b>
+                        <div class="post-content-row"><span class="q-label">Q1.</span>${p.q1}</div>
+                        <div class="post-content-row"><span class="q-label">Q2.</span>${p.q2}</div>`;
+                    
+                    // Q3가 있을 때만 출력
+                    if(p.q3) html += `<div class="post-content-row" style="color:var(--h-orange);"><span class="q-label">Q3.</span>${p.q3}</div>`;
+                    
+                    html += `<div class="btn-group" style="position: absolute; top: 18px; right: 18px; display: flex; gap: 6px;">
+                            <button class="action-btn" onclick="startEdit('${id}', '${p.name}', '${p.q1.replace(/'/g, "\\'")}', '${p.q2.replace(/'/g, "\\'")}', '${(p.q3 || "").replace(/'/g, "\\'")}')" style="background: #f2f2f2; color: #aaa; border: none; width: 28px; height: 28px; border-radius: 8px; cursor: pointer;">✎</button>
+                            <button class="action-btn" onclick="deletePost('${id}')" style="background: #f2f2f2; color: #aaa; border: none; width: 28px; height: 28px; border-radius: 8px; cursor: pointer;">×</button>
+                        </div></div>`;
                 }
             }
             list.innerHTML = html;
@@ -470,5 +522,6 @@ else if (
 </script>
 </body>
 </html>
+
 
 
