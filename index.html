@@ -9,7 +9,6 @@
         :root { --h-orange: #ff6b00; --h-dark: #222; --bg-chat: #f0f2f5; --border: #eeeeee; }
         body, html { margin: 0; padding: 0; height: 100%; font-family: 'Pretendard', sans-serif; background-color: #f8f9fa; color: #333; overflow: hidden; -webkit-tap-highlight-color: transparent; }
         
-        /* PC/모바일 통합 반응형 컨테이너 */
         .app-container { display: flex; flex-direction: column; height: 100vh; max-width: 600px; margin: 0 auto; background-color: #ffffff; box-shadow: 0 0 30px rgba(0,0,0,0.1); position: relative; }
         
         header { padding: 18px 20px; background: #fff; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; z-index: 10; }
@@ -31,7 +30,7 @@
         .app-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
         .app-btn { text-decoration: none; text-align: center; font-size: 0.78rem; padding: 12px; border-radius: 10px; font-weight: 800; background: var(--h-dark); color: white; }
 
-        /* 탭 2: 복지 챗봇 (줄바꿈 최적화) */
+        /* 탭 2: 복지 챗봇 */
         #chatbot-tab { background-color: var(--bg-chat); }
         .quick-preview { padding: 12px 15px; background: #fff; border-bottom: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
         .q-btn { background: #fff; border: 1.5px solid #eee; color: #666; padding: 8px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; cursor: pointer; }
@@ -53,21 +52,24 @@
         input[type="text"] { flex: 1; padding: 12px 18px; border: 1px solid #ddd; border-radius: 25px; outline: none; font-size: 0.95rem; }
         .send-btn { background: var(--h-dark); color: white; border: none; width: 42px; height: 42px; border-radius: 50%; font-weight: 700; font-size: 1.2rem; cursor: pointer; }
 
-        /* 탭 3: 대화보드 */
+        /* 탭 3: 대화보드 (개편된 스타일) */
         #board-tab { background-color: #f4f5f7; overflow-y: auto; padding: 20px; box-sizing: border-box; }
         .question-box { background: #fff1e6; border-left: 4px solid var(--h-orange); padding: 15px; border-radius: 10px; margin-bottom: 20px; }
         .question-box h4 { margin: 0 0 10px 0; font-size: 0.95rem; color: var(--h-orange); font-weight: 800; }
         .question-box p { margin: 6px 0; font-size: 0.88rem; color: #444; line-height: 1.5; font-weight: 600; word-break: keep-all; }
+        .write-tip { font-size: 0.75rem; color: #ff6b00; font-weight: 700; margin-top: 10px; padding-top: 10px; border-top: 1px dashed #ffd1b3; }
         
-        .input-card { background: #fff; padding: 15px; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; }
-        .input-card input, .input-card textarea { width: 100%; border: 1px solid #ddd; padding: 12px; border-radius: 10px; margin-bottom: 10px; box-sizing: border-box; font-family: inherit; font-size: 0.9rem; outline: none; }
-        .post-btn { background: var(--h-orange); color: #fff; border: none; width: 100%; padding: 14px; border-radius: 10px; font-weight: 800; cursor: pointer; }
+        .input-card { background: #fff; padding: 18px; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .input-card input, .input-card textarea { width: 100%; border: 1px solid #ddd; padding: 12px; border-radius: 10px; margin-bottom: 10px; box-sizing: border-box; font-family: inherit; font-size: 0.88rem; outline: none; transition: border 0.2s; }
+        .input-card textarea:focus { border-color: var(--h-orange); }
+        .post-btn { background: var(--h-orange); color: #fff; border: none; width: 100%; padding: 14px; border-radius: 10px; font-weight: 800; cursor: pointer; margin-top: 5px; }
         
-        .post-item { background: #fff; padding: 15px; border-radius: 12px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); position: relative; }
-        .post-item b { display: block; font-size: 0.85rem; color: var(--h-orange); margin-bottom: 5px; }
-        .post-item p { margin: 0; font-size: 0.92rem; color: #444; line-height: 1.5; padding-right: 65px; }
+        .post-item { background: #fff; padding: 18px; border-radius: 12px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); position: relative; }
+        .post-item b { display: block; font-size: 0.85rem; color: var(--h-orange); margin-bottom: 8px; border-bottom: 1px solid #f9f9f9; padding-bottom: 5px; }
+        .post-content-row { margin-bottom: 8px; font-size: 0.9rem; line-height: 1.5; color: #444; }
+        .q-label { font-weight: 800; color: #888; font-size: 0.78rem; margin-right: 5px; }
         
-        .btn-group { position: absolute; top: 12px; right: 12px; display: flex; gap: 5px; }
+        .btn-group { position: absolute; top: 15px; right: 15px; display: flex; gap: 5px; }
         .action-btn { background: #eee; color: #999; border: none; width: 26px; height: 26px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; }
         .edit-btn { color: var(--h-orange); }
 
@@ -84,7 +86,7 @@
     <div class="content-area">
         <div id="links-tab" class="tab-content active">
             <a href="https://hwhnr.circle.hanwha.com/" target="_blank" class="site-card"><h3>1. 공식 포털 (Circle)</h3><div class="site-desc">사내 주요 공지 및 인사/복리후생 게시판 확인</div><div class="login-box">ID: <b>사번</b> / PW: <b>사번</b></div></a>
-            <a href="https://chhplus.hanwha.com/" target="_blank" class="site-card"><h3>2. ch H+ (채널에이치플러스)</h3><div class="site-desc">신입사원 필수 교육 및 직무 역량 강화 플랫폼</div><div class="login-box">ID: <b>사번</b> / PW: <b>사번</b></div></a>
+            <a href="https://chhplus.hanwha.com/" target="_blank" class="site-card"><h3>2. ch H+ (채널에이치플러스)</h3><div class="site-desc">신입사원 교육 및 직무 역량 강화 플랫폼</div><div class="login-box">ID: <b>사번</b> / PW: <b>사번</b></div></a>
             <a href="https://thetastable.ezwel.com" target="_blank" class="site-card"><h3>3. 복지몰 (이지웰)</h3><div class="site-desc">Refresh 포인트 사용 및 할인 쇼핑몰</div><div class="login-box">ID: <b>사번</b> / PW: <b>생년월일 6자리</b></div></a>
             <div class="site-card">
                 <h3>4. 리조트 이용 안내 (App)</h3>
@@ -107,18 +109,22 @@
                 <button class="q-btn" onclick="askMain('기타문의')">📞 기타문의</button>
             </div>
             <div id="chat-window"><div class="msg-row"><div class="msg bot-msg">안녕하세요! <b>인사지원팀 복지 챗봇</b>입니다. 😊 무엇이 궁금하신가요?</div></div></div>
-            <div class="input-bar"><input type="text" id="userInput" placeholder="단어(결혼, 출산, 리프레시 등)를 입력하세요..." onkeypress="if(event.keyCode==13) send()"><button class="send-btn" onclick="send()">↑</button></div>
+            <div class="input-bar"><input type="text" id="userInput" placeholder="단어(결혼, 출산, 리조트 등)를 입력하세요..." onkeypress="if(event.keyCode==13) send()"><button class="send-btn" onclick="send()">↑</button></div>
         </div>
 
         <div id="board-tab" class="tab-content">
             <div class="question-box">
                 <h4>🙌 동료들과 함께 나누는 이야기</h4>
                 <p>Q1. 입사 초반에는 어렵게 느꼈지만 지금은 그 때보다 쉬워진 게 있다면?</p>
-                <p>Q2. 최근 이용한 동종업계 서비스 or 음식 중 가장 인상 깊었던 것은?</p>
+                <p>Q2. 최근 이용한 동종업계 서비스 or 음식 중 가장 인상 깊었던 것은? (없다면 검색!)</p>
+                <p>Q3. 회사에 궁금한 점이 있다면 자유롭게 적어주세요.</p>
+                <div class="write-tip">💡 작성 팁: Q1은 1문장, Q2는 ‘브랜드명 + 인상 포인트 1개’, Q3는 한 줄 질문으로 작성해 주세요.</div>
             </div>
             <div class="input-card">
                 <input type="text" id="pName" placeholder="닉네임 (익명 가능)">
-                <textarea id="pText" placeholder="의견을 남겨주세요. (수정 시 아래 ✎ 버튼 클릭)" rows="3"></textarea>
+                <textarea id="pQ1" placeholder="Q1 답변을 입력하세요." rows="2"></textarea>
+                <textarea id="pQ2" placeholder="Q2 답변을 입력하세요." rows="2"></textarea>
+                <textarea id="pQ3" placeholder="Q3 질문을 입력하세요. (선택)" rows="2"></textarea>
                 <button class="post-btn" id="postSubmitBtn" onclick="addPost()">답변 등록하기</button>
             </div>
             <div id="postList"></div>
@@ -146,7 +152,7 @@
     };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database().ref("posts");
-    let editId = null; // [수정 모드 변수]
+    let editId = null;
 
     function tabCtrl(n, el) {
         document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -155,34 +161,42 @@
     }
     function tabChange(n, el) { tabCtrl(n, el); if(n === 'board') loadPosts(); }
 
+    // [데이터 구조 변경 반영: q1, q2, q3]
     function addPost() {
         const name = document.getElementById('pName').value || "익명";
-        const content = document.getElementById('pText').value;
+        const q1 = document.getElementById('pQ1').value;
+        const q2 = document.getElementById('pQ2').value;
+        const q3 = document.getElementById('pQ3').value;
         const btn = document.getElementById('postSubmitBtn');
-        if(!content) return alert("내용을 입력하세요!");
+        
+        if(!q1 || !q2) return alert("Q1, Q2 답변은 필수입니다!");
 
-        if(editId) { // [인라인 수정 로직]
-            db.child(editId).update({ name: name, content: content });
+        if(editId) {
+            db.child(editId).update({ name: name, q1: q1, q2: q2, q3: q3 });
             editId = null;
             btn.innerHTML = "답변 등록하기";
             btn.style.background = "var(--h-orange)";
         } else {
-            db.push({ name: name, content: content, date: Date.now() });
+            db.push({ name: name, q1: q1, q2: q2, q3: q3, date: Date.now() });
         }
-        document.getElementById('pText').value = "";
+        
+        document.getElementById('pQ1').value = "";
+        document.getElementById('pQ2').value = "";
+        document.getElementById('pQ3').value = "";
     }
 
     function deletePost(id) { if(confirm("이 답변을 삭제하시겠습니까?")) db.child(id).remove(); }
 
-    // [편집 기능: 팝업 없이 답변창으로 로드]
-    function startEdit(id, name, content) {
+    function startEdit(id, name, q1, q2, q3) {
         editId = id;
         document.getElementById('pName').value = name;
-        document.getElementById('pText').value = content;
+        document.getElementById('pQ1').value = q1;
+        document.getElementById('pQ2').value = q2;
+        document.getElementById('pQ3').value = q3;
         const btn = document.getElementById('postSubmitBtn');
         btn.innerHTML = "수정 완료하기";
         btn.style.background = "#222";
-        document.getElementById('board-tab').scrollTop = 0; // 상단 입력창으로 스크롤
+        document.getElementById('board-tab').scrollTop = 0;
     }
 
     function loadPosts() {
@@ -194,10 +208,15 @@
                 const keys = Object.keys(data).reverse();
                 for(let i=0; i<keys.length; i++) {
                     const id = keys[i]; const p = data[id];
-                    html += '<div class="post-item"><b>' + p.name + '</b><p>' + p.content + '</p>';
+                    html += '<div class="post-item"><b>' + p.name + '</b>';
+                    html += '<div class="post-content-row"><span class="q-label">Q1.</span>' + p.q1 + '</div>';
+                    html += '<div class="post-content-row"><span class="q-label">Q2.</span>' + p.q2 + '</div>';
+                    // Q3는 값이 있을 때만 노출
+                    if(p.q3) html += '<div class="post-content-row"><span class="q-label">Q3.</span>' + p.q3 + '</div>';
+                    
                     html += '<div class="btn-group">';
-                    html += '<button class="action-btn edit-btn" onclick="startEdit(\'' + id + '\', \'' + p.name + '\', \'' + p.content + '\')">✎</button>';
-                    html += '<button class="action-btn" onclick="deletePost(\'' + id + '\')">×</button>';
+                    html += `<button class="action-btn edit-btn" onclick="startEdit('${id}', '${p.name}', '${p.q1}', '${p.q2}', '${p.q3 || ""}')">✎</button>`;
+                    html += `<button class="action-btn" onclick="deletePost('${id}')">×</button>`;
                     html += '</div></div>';
                 }
             }
@@ -205,7 +224,6 @@
         });
     }
 
-    // 챗봇 답변 데이터 (자녀출산 휴가/경조금 수정 반영)
     const win = document.getElementById('chat-window');
     function msg(t, s) { const r = document.createElement('div'); r.className = 'msg-row'; r.innerHTML = '<div class="msg ' + s + '-msg">' + t + '</div>'; win.appendChild(r); win.scrollTop = win.scrollHeight; }
     function btns(arr) { const r = document.createElement('div'); r.className = 'sub-btn-row'; for(let i=0; i<arr.length; i++) { const b = document.createElement('button'); b.className = 'sub-btn'; b.innerHTML = arr[i].txt; b.onclick = function() { showDetail(arr[i].id, arr[i].txt); }; r.appendChild(b); } win.appendChild(r); win.scrollTop = win.scrollHeight; }
@@ -227,43 +245,19 @@
         if(txt) msg(txt + ' 정보가 궁금해요', 'user');
         setTimeout(function() {
             let r = "";
-            if(id === '결혼') {
-                r = "<b>[결혼 및 회갑 지원]</b><ul><li><b>본인 결혼:</b> 휴가 7일 / 100만원 / <span class='hl'>경조화환 제공</span></li><li><b>자녀 결혼:</b> 휴가 1일 / 70만원 / <span class='hl'>경조화환 제공</span></li><li><b>형제자매/배우자 형제자매:</b> 휴가 1일 / <span class='hl'>경조화환 제공</span></li><li><b>회갑(부모/배우자부모):</b> 휴가 1일 / 30만원 / <span class='hl'>경조화환 제공</span></li></ul>";
-            } else if(id === '출산') {
-                r = "<b>[자녀출산 및 육아 상세]</b><ul><li><b>자녀출산(본인):</b> 휴가 90일(산후 45일 확보) / <span class='hl'>1,000만원</span></li><li><b>자녀출산(배우자):</b> <span class='hl'>경조휴가 20일(법정휴가)</span> / <span class='hl'>1,000만원(근속 2년 이상)</span></li><li><b>육아 휴직:</b> 만 8세 이하 자녀 대상 최대 1년 (1회 분할)</li><li><b>맘스패키지:</b> 임신/출산 전용 선물 지원</li></ul>";
-            } else if(id === '사망') {
-                r = "<b>[장례 및 조의 상세]</b><ul><li><b>부모/배우자부모 상:</b> 5일 / 100만원 / <span class='hl'>경조화환/장의용품 제공</span></li><li><b>배우자 상:</b> 6일(배)/5일(자) / 150만원 / <span class='hl'>경조화환/장의용품 제공</span></li><li><b>조부모/외조부모 상:</b> 3일 / 100만원 / <span class='hl'>경조화환/장의용품 제공</span></li><li><b>승중상:</b> 5일 / 70만원 / <span class='hl'>경조화환/장의용품 제공</span></li><li><b>형제자매/배우자형제 상:</b> 2일 / <span class='hl'>경조화환/장의용품 제공</span></li><li><b>백숙부모 상:</b> <span class='hl'>경조휴가 1일 부여</span></li></ul>";
-            } else if(id === '위로금') {
-                r = "<b>[본인 사망 위로금]</b><ul><li><b>근속 1년 미만:</b> 통상임금 1개월분</li><li><b>1~3년:</b> 2개월분 / <b>3~5년:</b> 3개월분</li><li><b>5~10년:</b> 4개월분 / <b>10년 이상:</b> 6개월분</li><li>상세 내용은 Circle 게시판을 확인해 주세요.</li></ul>";
-            } else if(id === '연차') {
-                r = "<b>[연차 및 정기휴가]</b><ul><li><b>연차 휴가:</b> 기본 15일 부여, 2년마다 1일 가산 (최대 25일)</li><li><b>정기 휴가:</b> 연간 <span class='hl'>4일 유급 별도 부여</span> (분할 가능)</li><li><b>사용 기준:</b> 회계연도 기준(1/1~12/31) 운영</li></ul>";
-            } else if(id === '유의') {
-                r = "<b>[경조 사용 유의사항]</b><ul><li><b>휴가 계산:</b> 휴일 포함 산입</li><li><b>기한:</b> 사유 발생일로부터 <span class='hl'>3개월 이내</span> 신청</li></ul><div class='path-box'><b>경로:</b> Circle 접속 → 지원업무 → 임직원 서비스 → 복지 → 경조사 지원</div>";
-            } else if(id === '리조트자격') {
-                r = "<b>[리조트 이용 기준]</b><ul><li><b>대상:</b> 입사 후 <span class='hl'>재직기간 3개월 경과</span> 임직원</li><li><b>제외:</b> 단시간 근로자 제외</li><li><b>기간:</b> 당해 년도 3/1 ~ 익년 2/28</li></ul>";
-            } else if(id === '리조트숙박') {
-                r = "<b>[리조트 숙박 기준]</b><ul><li><b>일반직:</b> 무료 4박 / 유료 4박</li><li><b>전문직:</b> <span class='hl'>무료 4박</span> (확인 요청 반영) / 유료 4박</li></ul>";
-            } else if(id === '리조트예약') {
-                r = "<b>[예약 및 이용권]</b><ul><li><b>쿠폰 지급:</b> 부대업장 12장, 식음할인 12장 각 지급</li><li><b>확정 안내:</b> 매주 <span class='hl'>화요일 확정 안내</span></li></ul><div class='path-box'><b>경로:</b> Circle 접속 → 지원업무 → 임직원 서비스 → 복지 → 임직원 시설우대이용 방법(H&R객실,아쿠아플라넷)</div>";
-            } else if(id === '교육비') {
-                r = "<b>[자녀 학자금 지원]</b><ul><li><b>지원:</b> 자녀 유치원 축하금 및 학자금 지원</li><li><b>수능선물:</b> 수능 자녀 합격 기원 선물 지급</li></ul><div class='path-box'><b>경로:</b> Circle 접속 → 게시판</div>";
-            } else if(id === '기념일') {
-                r = "<b>[명절 및 기념일]</b><ul><li><b>정기기념품:</b> 창립기념일/근로자의 날 <span class='hl'>각 7만원 상당</span></li><li><b>명절 지원:</b> 설 차례비 및 명절 기념품 지급</li><li><b>개인 기념:</b> 생일/결혼기념 문화상품권 (3개월 재직자)</li></ul>";
-            } else if(id === '생활') {
-                r = "<b>[중식 및 동호회]</b><ul><li><b>중식:</b> 전 임직원 중식비 지원</li><li><b>동호회:</b> 사내 동우회 활동 지원금 제공</li></ul><div class='path-box'><b>경로:</b> Circle 접속 → 게시판</div>";
-            } else if(id === '보험') {
-                r = "<b>[단체 상해보험]</b><ul><li><b>대상:</b> 입사 1년 이상 근무자 전원 (회사 전액 부담)</li><li><b>보장:</b> 업무 무관(여행/휴일) 일상 사고도 청구 가능</li></ul><div class='path-box'><b>경로:</b> Circle 접속 → 지원업무 → 임직원 서비스 → 복지 → 단체상해보험</div>";
-            } else if(id === '검진') {
-                r = "<b>[건강검진 및 접종]</b><ul><li><b>검진:</b> 종합검진(근속 차등) 및 공단검진 시행</li><li><b>접종:</b> 매년 전 임직원 독감 예방 접종 시행</li></ul><div class='path-box'><b>경로:</b> Circle 접속 → 게시판</div>";
-            } else if(id === '포인트') {
-                r = "<b>[Refresh 포인트]</b><ul><li><b>지급방법:</b> 매년 1월 선 지급</li><li><b>지급액:</b> 연차휴가 10일 사용분 <span class='hl'>70만원</span></li><li><b>주의:</b> 미사용 시 포인트 과사용분 급여 공제</li></ul>";
-            } else if(id === '이지웰') {
-                r = "<b>[복지몰 이용법]</b><ul><li><b>계정:</b> ID(사번) / 최초 PW(생년6자리)</li></ul><div class='path-box'><b>경로:</b> Circle 접속 → 지원업무 → 임직원 서비스 → 복지 → 복지몰 이용 프로세스</div>";
-            } else if(id === '연락처') {
-                r = "<b>[인사지원팀 연락처]</b><ul><li><b>복리후생 담당:</b> 02-2161-0824 / 0860</li></ul>";
-            } else if(id === '게시판') {
-                r = "<b>[Circle 인사 게시판 활용]</b><div class='path-box'><b>경로:</b> Circle 접속 → 게시판 → 인사</div>";
-            }
+            if(id === '결혼') r = "<b>[결혼 및 회갑 지원]</b><ul><li><b>본인 결혼:</b> 휴가 7일 / 100만원 / <span class='hl'>경조화환 제공</span></li><li><b>자녀 결혼:</b> 휴가 1일 / 70만원 / <span class='hl'>경조화환 제공</span></li><li><b>형제자매/배우자 형제자매:</b> 휴가 1일 / <span class='hl'>경조화환 제공</span></li><li><b>회갑(부모/배우자부모):</b> 휴가 1일 / 30만원 / <span class='hl'>경조화환 제공</span></li></ul>";
+            else if(id === '출산') r = "<b>[자녀출산 및 육아 상세]</b><ul><li><b>자녀출산(본인):</b> 휴가 90일 / 1,000만원</li><li><b>자녀출산(배우자):</b> <span class='hl'>경조휴가 20일(법정휴가)</span> / <span class='hl'>1,000만원(근속 2년 이상)</span></li><li><b>육아 휴직:</b> 만 8세 이하 자녀 대상 최대 1년</li><li><b>맘스패키지:</b> 선물 지원</li></ul>";
+            else if(id === '사망') r = "<b>[장례 및 조의 상세]</b><ul><li><b>부모/배우자부모 상:</b> 5일 / 100만원 / <span class='hl'>경조화환/장의용품 제공</span></li><li><b>배우자/자녀 상:</b> 6일(배)/5일(자) / 150만원 / <span class='hl'>경조화환/장의용품 제공</span></li><li><b>조부모/외조부모 상:</b> 3일 / 100만원 / <span class='hl'>경조화환/장의용품 제공</span></li><li><b>승중상:</b> 5일 / 70만원 / <span class='hl'>경조화환/장의용품 제공</span></li><li><b>백숙부모 상:</b> <span class='hl'>경조휴가 1일 부여</span></li></ul>";
+            else if(id === '위로금') r = "<b>[본인 사망 위로금]</b><ul><li><b>근속 1년 미만:</b> 통상임금 1개월분</li><li><b>근속 10년 이상:</b> <span class='hl'>통상임금 6개월분</span></li></ul>";
+            else if(id === '연차') r = "<b>[연차 및 정기휴가]</b><ul><li><b>연차 휴가:</b> 기본 15일 부여, 2년마다 1일 가산</li><li><b>정기 휴가:</b> 연간 <span class='hl'>4일 유급 별도 부여</span></li></ul>";
+            else if(id === '유의') r = "<b>[경조 사용 유의사항]</b><ul><li><b>휴가 계산:</b> 휴일 포함 산입</li><li><b>기한:</b> 3개월 이내 신청</li></ul><div class='path-box'><b>경로:</b> Circle 접속 → 지원업무 → 임직원 서비스 → 복지 → 경조사 지원</div>";
+            else if(id === '리조트숙박') r = "<b>[리조트 숙박 기준]</b><ul><li><b>일반직:</b> 무료 4박 / 유료 4박</li><li><b>전문직:</b> <span class='hl'>무료 4박</span> / 유료 4박</li></ul>";
+            else if(id === '리조트예약') r = "<b>[예약 방법]</b><ul><li>리조트 App -> 개인분양회원가입 -> 임직원 예약</li></ul><div class='path-box'><b>경로:</b> Circle 접속 → 지원업무 → 임직원 서비스 → 복지 → 임직원 시설우대이용 방법</div>";
+            else if(id === '교육비') r = "<b>[자녀 학자금 지원]</b><div class='path-box'><b>경로:</b> Circle 접속 → 게시판</div>";
+            else if(id === '보험') r = "<b>[단체 상해보험]</b><div class='path-box'><b>경로:</b> Circle 접속 → 지원업무 → 임직원 서비스 → 복지 → 단체상해보험</div>";
+            else if(id === '포인트') r = "<b>[Refresh 포인트]</b><ul><li><b>지급액:</b> 연차휴가 10일 사용분 <span class='hl'>70만원</span></li></ul>";
+            else if(id === '게시판') r = "<b>[Circle 인사 게시판 활용]</b><div class='path-box'><b>경로:</b> Circle 접속 → 게시판 → 인사</div>";
+            else r = "Circle 게시판 상세 공지를 확인해 주세요.";
             msg(r, 'bot');
         }, 400);
     }
@@ -273,22 +267,14 @@
         msg(t + ' 정보가 궁금해요', 'user'); i.value = ''; 
         setTimeout(function() {
             const lowT = t.toLowerCase();
-            // 키워드 엔진 세분화 (리프레시, 리프레쉬, 백숙 등 대응)
-            if(lowT.includes('결혼') || lowT.includes('혼인') || lowT.includes('회갑')) showDetail('결혼');
-            else if(lowT.includes('출산') || lowT.includes('육아') || lowT.includes('임신')) showDetail('출산');
-            else if(lowT.includes('사망') || lowT.includes('장례') || lowT.includes('조의') || lowT.includes('백숙') || lowT.includes('승중') || lowT.includes('외조부')) showDetail('사망');
-            else if(lowT.includes('위로금') || lowT.includes('본인사망')) showDetail('위로금');
+            if(lowT.includes('결혼') || lowT.includes('회갑')) showDetail('결혼');
+            else if(lowT.includes('출산') || lowT.includes('육아')) showDetail('출산');
+            else if(lowT.includes('사망') || lowT.includes('장례') || lowT.includes('백숙')) showDetail('사망');
             else if(lowT.includes('연차') || lowT.includes('휴가') || lowT.includes('4일')) showDetail('연차');
-            else if(lowT.includes('리조트') || lowT.includes('숙박') || lowT.includes('콘도') || lowT.includes('아쿠아')) showDetail('리조트숙박');
+            else if(lowT.includes('리조트') || lowT.includes('숙박')) showDetail('리조트숙박');
             else if(lowT.includes('포인트') || lowT.includes('리프레시') || lowT.includes('리프레쉬') || lowT.includes('70만')) showDetail('포인트');
-            else if(lowT.includes('보험') || lowT.includes('상해')) showDetail('보험');
-            else if(lowT.includes('검진') || lowT.includes('건강') || lowT.includes('독감')) showDetail('검진');
-            else if(lowT.includes('교육') || lowT.includes('학자금')) showDetail('교육비');
-            else if(lowT.includes('명절') || lowT.includes('기념') || lowT.includes('설')) showDetail('기념일');
-            else if(lowT.includes('중식') || lowT.includes('점심') || lowT.includes('식사') || lowT.includes('동호회')) showDetail('생활');
-            else if(lowT.includes('연락') || lowT.includes('전화') || lowT.includes('인사팀')) showDetail('연락처');
-            else if(lowT.includes('게시판') || lowT.includes('인사문의') || lowT.includes('경로')) showDetail('게시판');
-            else msg("죄송합니다. <b>'결혼, 출산, 리조트, 리프레시, 인사팀'</b> 등 구체적인 단어로 질문해 주세요! 😊", 'bot');
+            else if(lowT.includes('연락') || lowT.includes('인사팀')) showDetail('연락처');
+            else msg("죄송합니다. 구체적인 단어로 질문해 주시거나 상단 퀵 버튼을 이용해 주세요! 😊", 'bot');
         }, 500);
     }
 </script>
