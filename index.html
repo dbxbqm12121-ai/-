@@ -175,6 +175,16 @@
                     const p = data[id];
                     html += '<div class="post-item"><b>' + p.name + '</b><p>' + p.content + '</p>';
                     html += '<button class="del-btn" onclick="deletePost(\'' + id + '\')">×</button></div>';
+                    // loadPosts 함수 내부에서 html 변수를 만드는 부분입니다.
+html += '<div class="post-item"><b>' + p.name + '</b><p>' + p.content + '</p>';
+html += '<div class="btn-group">';
+
+/* 이 아래 버튼 코드를 넣으세요! */
+html += '<button class="action-btn edit-btn" onclick="editPost(\'' + id + '\', \'' + p.name + '\', \'' + p.content + '\')">✎</button>';
+/* -------------------------- */
+
+html += '<button class="action-btn" onclick="deletePost(\'' + id + '\')">×</button>';
+html += '</div></div>';
                 }
             }
             list.innerHTML = html;
@@ -235,3 +245,4 @@
 </script>
 </body>
 </html>
+
