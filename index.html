@@ -199,7 +199,7 @@
             } else if(id === '리조트쿠폰') {
                 r = "<b>[리조트 쿠폰함 확인]</b><ul><li>App 메인화면 하단 <span class='hl'>‘쿠폰함’</span> 접속</li><li><span class='hl'>[MY쿠폰] – [임직원]</span> 탭에서 확인 가능</li></ul>";
             } else if(id === '기념일') {
-                r = "<b>[기념일 지원]</b><ul><li><b>근로자의 날/창립기념일:</b> 전원 대상, <span class='hl'>기념품(7만원 상당)</span> 지급</li><li><b>생일/결혼기념일:</b> <span class='hl'>입사 3개월 이상</span> 대상, 문화상품권 지급</li></ul>";
+                r = "<b>[기념일 지원]</b><ul><li><b>근로자의 날/창립기념일:</b> 전원 대상, <span class='hl'>기념품(7만원 상당)</span> 지급</li><li><b>생일/결혼기념일:</b> <span class='hl'>입사 3개월 이상</span> 대상, 2만원 상당 상품권 지급</li></ul>";
             } else if(id === '보험') {
                 r = "<b>[단체 상해보험]</b><ul><li>상해/질병/장애/사망 등 사고 시 보험금 지급 (회사 전액 부담)</li><li><b>가입 대상:</b> <span class='hl'>1년 이상 근무자</span> (최초 입사일 기준)</li><li>업무 연관성 무관 청구 가능 (일상 생활 사고 포함)</li></ul>";
             } else if(id === '포인트') {
@@ -220,56 +220,75 @@
     }
 
     // 3. 키워드 검색 엔진 (2차 수정 반영)
-    function send() { 
-        const i = document.getElementById('userInput'); const t = i.value.trim(); if(!t) return; 
-        msg(t + ' 정보가 궁금해요', 'user'); i.value = ''; 
-        setTimeout(function() {
-            const lowT = t.toLowerCase();
-            if(lowT.includes('결혼') || lowT.includes('회갑')) showDetail('결혼');
-            else if(lowT.includes('출산') || lowT.includes('육아')) showDetail('출산');
-            else if(lowT.includes('사망') || lowT.includes('장례') || lowT.includes('위로금')) showDetail('사망');
-            else if(lowT.includes('연차') || lowT.includes('휴가')) showDetail('연차');
-            else if(lowT.includes('리조트') || lowT.includes('숙박')) showDetail('리조트숙박');
-            else if(lowT.includes('쿠폰')) showDetail('리조트쿠폰'); 
-            else if(lowT.includes('포인트') || lowT.includes('이지웰')) showDetail('포인트사용');
-            else if(lowT.includes('보험') || lowT.includes('상해')) showDetail('보험');
-            else if(lowT.includes('학자금') || lowT.includes('유치원')) showDetail('학자금');
-            else if(lowT.includes('기념일') || lowT.includes('근로자') || lowT.includes('창립')) showDetail('기념일');
-            else if(lowT.includes('게시판')) showDetail('게시판');
-            else if(lowT.includes('인사팀') || lowT.includes('연락처') || lowT.includes('문의')) showDetail('연락처');
-            else msg("상단 퀵 버튼을 이용하시거나 '결혼, 출산, 포인트, 쿠폰, 연락처' 등 단어로 질문해 주세요! 😊", 'bot');
-        }, 500);
-    }
+    // ===== 챗봇 키워드 고도화 =====
 
-    function addPost() {
-        const name = document.getElementById('pName').value || "익명";
-        const q1 = document.getElementById('pQ1').value;
-        const q2 = document.getElementById('pQ2').value;
-        if(!q1 || !q2) return alert("Q1, Q2 답변은 필수입니다!");
-        db.push({ name, q1, q2, date: Date.now() });
-        document.getElementById('pName').value = "";
-        document.getElementById('pQ1').value = "";
-        document.getElementById('pQ2').value = "";
-    }
+function normalizeKo(s){
+  return (s||"")
+  .toLowerCase()
+  .replace(/\s+/g,"")
+  .replace(/[~`!@#$%^&*()_|+\-=?;:'",.<>{}\[\]\\\/]/g,"")
+  .replace(/이지웰/g,"ezwel")
+  .replace(/리프레시/g,"refresh");
+}
 
-    function loadPosts() {
-        db.on('value', function(snap) {
-            const data = snap.val();
-            const list = document.getElementById('postList');
-            let html = "";
-            if(data) {
-                const keys = Object.keys(data).reverse();
-                for(let i=0; i<keys.length; i++) {
-                    const id = keys[i]; const p = data[id];
-                    html += `<div class="post-item"><b>${p.name}</b>`;
-                    html += `<div class="post-content-row"><span class="q-label">Q1.</span>${p.q1}</div>`;
-                    html += `<div class="post-content-row"><span class="q-label">Q2.</span>${p.q2}</div></div>`;
-                }
-            }
-            list.innerHTML = html;
-        });
-    }
-</script>
-</body>
-</html>
+const INTENTS = [
+ {id:"결혼",label:"결혼/회갑",keywords:["결혼","혼인","웨딩","회갑","환갑","칠순","팔순","축의","축하금","경조금"]},
+ {id:"출산",label:"출산/육아",keywords:["출산","임신","육아","육아휴직","출산휴가"]},
+ {id:"사망",label:"장례",keywords:["사망","장례","부고","조문","위로금","상"]},
+ {id:"연차",label:"연차휴가",keywords:["연차","휴가","리프레시휴가","특별휴가"]},
+ {id:"리조트숙박",label:"리조트숙박",keywords:["리조트","숙박","한화리조트"]},
+ {id:"리조트예약",label:"리조트예약",keywords:["예약","리조트예약","앱예약"]},
+ {id:"리조트쿠폰",label:"쿠폰",keywords:["쿠폰","쿠폰함"]},
+ {id:"포인트사용",label:"복지포인트",keywords:["포인트","복지몰","이지웰","refresh"]},
+ {id:"보험",label:"보험",keywords:["보험","상해보험"]},
+ {id:"학자금",label:"학자금",keywords:["학자금","유치원"]},
+ {id:"연락처",label:"인사팀",keywords:["연락처","전화","문의","인사팀"]},
+]
 
+function matchIntent(text){
+ const t = normalizeKo(text)
+
+ const scored = INTENTS.map(item=>{
+  let score=0
+  item.keywords.forEach(k=>{
+   if(t.includes(normalizeKo(k))) score++
+  })
+  return {id:item.id,label:item.label,score}
+ })
+
+ scored.sort((a,b)=>b.score-a.score)
+
+ const best = scored[0].score>0 ? scored[0] : null
+ const top = scored.filter(x=>x.score>0).slice(0,3)
+
+ return {best,top}
+}
+    function send(){
+
+ const i=document.getElementById('userInput')
+ const t=i.value.trim()
+
+ if(!t) return
+
+ msg(t+' 정보가 궁금해요','user')
+ i.value=''
+
+ setTimeout(function(){
+
+ const {best,top}=matchIntent(t)
+
+ if(best){
+  showDetail(best.id)
+  return
+ }
+
+ if(top.length>0){
+  msg("<b>[관련 항목]</b> 아래 버튼을 선택해 주세요",'bot')
+  btns(top.map(x=>({txt:x.label,id:x.id})))
+  return
+ }
+
+ msg("죄송합니다. 다른 키워드로 입력해 주시거나 상단 버튼을 눌러 확인해 주세요",'bot')
+
+ },400)
+}
